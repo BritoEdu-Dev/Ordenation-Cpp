@@ -9,16 +9,15 @@ using namespace std;
 const int tamanho = 1000;
 
 // Gerar notas aleatórias
-void gerarNotas(vector<double>& notas) {
-    srand(time(0)); 
-    for (int i = 0; i < tamanho; i++) {
-        double nota = (rand() % 101) / 10.0;
+void gerarNotas(vector<float>& notas) {
+    for (int contador = 0; contador < tamanho; contador++) {
+        float nota = (rand() % 101) / 10.0;
         notas.push_back(nota);
     }
 }
 
 // Ordenar
-void OrdernarBolha(vector<float>& notas) {
+void OrdenarBolha(vector<float>& notas) {
     for (int repetir = 0; repetir < tamanho - 1; repetir++) {
         for (int comparador = 0; comparador < tamanho - repetir - 1; comparador++) {
             if (notas[comparador] > notas[comparador + 1]) {
@@ -31,7 +30,7 @@ void OrdernarBolha(vector<float>& notas) {
 // Busca binária
 bool binarySearch(const vector<float>& notas, float buscarNota) {
     int esquerda = 0;
-    int direita = tamanho - 1;
+    int direita = notas.size() - 1;
     while (esquerda <= direita) {
 
         int meio = esquerda + (direita - esquerda) / 2;
@@ -55,12 +54,7 @@ int main() {
 
     vector<float> notas;
 
-    for (int i = 0; i < tamanho; i++) {
-
-        float nota = (float)rand() / RAND_MAX * 10;
-        notas.push_back(nota);
-
-    }
+    gerarNotas(notas);
 
     cout << "Notas geradas:\n";
 
@@ -71,7 +65,7 @@ int main() {
     cout << "\n\n";
 
     // Método Bubble Sort
-    OrdernarBolha(notas);
+    OrdenarBolha(notas);
 
     cout << "Notas ordenadas:\n";
 
